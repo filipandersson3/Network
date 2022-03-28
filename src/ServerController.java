@@ -7,17 +7,19 @@ public class ServerController {
     private Model server;
 
     public static void main(String[] args) {
-        ServerController clientController = new ServerController();
+        ServerController serverController = new ServerController();
     }
 
     public ServerController() {
-        ip = (String) JOptionPane.showInputDialog(null,"IP?","Connect to..",JOptionPane.QUESTION_MESSAGE);
+        ip = "localhost";
         port = Integer.parseInt(JOptionPane.showInputDialog(null,"Port?","Connect to..",JOptionPane.QUESTION_MESSAGE));
         Scanner tgb = new Scanner(System.in);
         server = new Model(ip,port);
         server.ServerStart();
-        while(tgb.hasNext()) {
-            server.send(tgb.nextLine());
+        while (true) {
+            while(tgb.hasNext()) {
+                server.send(tgb.nextLine());
+            }
         }
 
     }

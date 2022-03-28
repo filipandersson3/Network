@@ -32,14 +32,6 @@ public class Model {
             )));
             Thread listener = new Thread(in);
             listener.start();
-            boolean run = true;
-            while (run) {
-
-            }
-
-            out.close();
-            socket.close();
-            System.out.println("Done!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,10 +39,8 @@ public class Model {
 
     public void ServerStart() {
         System.out.println("Server started.");
-        boolean run = true;
         try {
             serverSocket = new ServerSocket(port);
-            while (true) {
                 System.out.println("Waiting for connections!");
                 socket = serverSocket.accept();
                 // Go
@@ -64,11 +54,6 @@ public class Model {
                 System.out.println("Client connected!");
                 //Protocol
                 out.println("Welcome idiot");
-                while (run) {
-                }
-                out.close();
-                socket.close();
-            }
         } catch (IOException e) {
             System.out.println("Server fail");
         }
@@ -76,5 +61,15 @@ public class Model {
 
     public void send(String msg) {
         out.println(msg);
+    }
+
+    public void stop() {
+        out.close();
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Done!");
     }
 }

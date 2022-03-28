@@ -17,8 +17,10 @@ public class ClientController {
         Scanner tgb = new Scanner(System.in);
         client = new Model(ip,port);
         client.ClientStart();
-        while(tgb.hasNext()) {
-            client.send(tgb.nextLine());
+        while (true) {
+            while(tgb.hasNext()) {
+                client.send(tgb.nextLine());
+            }
         }
 
     }
